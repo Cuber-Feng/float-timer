@@ -1,0 +1,41 @@
+@import './base.css';
+
+html, body {
+  background: transparent;
+  overflow: hidden;
+}
+
+/* body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background-size: cover;
+  user-select: none;
+} */
+
+* {
+  color: black;
+}
+
+/* 2. 为你的 App 根组件容器设置半透明背景 */
+#root, .app {
+  width: 100vw;
+  height: 100vh;
+  /* 使用 rgba：最后一个值 0.8 代表 80% 不透明度（即 20% 透明） */
+  background-color: rgba(30, 30, 30, 0.75); 
+  
+  /* 可选：加上磨砂玻璃/毛玻璃效果（高版本 Windows/macOS 支持） */
+  backdrop-filter: blur(10px); 
+  
+  /* 解决无边框后窗口无法拖拽的问题：加这一行即可按住背景拖动窗口 */
+  -webkit-app-region: drag; 
+  
+  border-radius: 12px; /* 给半透明窗口加个圆角，视觉效果极佳 */
+  box-sizing: border-box;
+}
+
+/* 3. 注意：可点击的按钮或输入框必须设置 nodrag，否则无法点击 */
+button, input, a {
+  -webkit-app-region: no-drag;
+}

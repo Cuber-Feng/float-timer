@@ -1,0 +1,72 @@
+/* renderer/src/index.css - 强制覆盖所有背景为透明，防止 React 框架自带样式干扰 */
+
+/* 1. 根节点和宿主 DOM 必须强制透明 */
+html,
+body,
+#root {
+    margin: 0;
+    padding: 0;
+    width: 100% !important;
+    height: 100% !important;
+    background-color: transparent !important;
+    /* 彻底清除白底 */
+    overflow: hidden;
+    /* 防止无边框时出现多余滚动条 */
+    -webkit-user-select: none;
+    user-select: none;
+    /* 禁用文本选中（使界面更像原生应用） */
+}
+
+* {
+    color: #000000;
+}
+
+.app-container {
+    width: 100vw;
+    height: 100vh;
+    background-color: #ffffff;
+    color: #ffffff;
+    padding: 20px;
+    box-sizing: border-box;
+    border-radius: 12px;
+    -webkit-app-region: drag;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+button {
+    -webkit-app-region: no-drag;
+    /* 按钮不允许拖拽，否则无法点击 */
+}
+
+.no-drag {
+    -webkit-app-region: no-drag;
+    /* 任何带有这个类的元素都不允许拖拽 */
+}
+
+.timer-display {
+    color: var(--timer-color);
+    font-size: var(--timer-size);
+    font-family: monospace;
+    margin: 0;
+}
+
+.scramble-container {
+    margin-bottom: 20px;
+    font-size: 1rem;
+    font-family: monospace;
+    text-align: center;
+}
+
+.ao5-display {
+    margin-top: 1rem;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    color: var(--timer-color);
+    font-weight: 600;
+}
+
+.scramble-container p {
+  white-space: pre-wrap;
+}
