@@ -1,5 +1,5 @@
 import { toggleStatsWindow } from '../windows/statsWindow.js';
-import { windowSize, setWindowSize } from '../config.js';
+import { setWindowSize } from '../config.js';
 
 export function createMenuHandlers({ mainWindow, getStatsWindow, store, db }) {
   function handleUpdateOpacity(menuItem) {

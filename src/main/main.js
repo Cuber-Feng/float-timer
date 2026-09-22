@@ -59,6 +59,7 @@ function createWindow() {
 }
 
 function setAppMenu() {
+  console.log('Main | start set app menu');
   const currentOpacity = store.get('opacity');
   const currentAlwaysOnTop = store.get('alwaysOnTop');
   const currentEvent = store.get('lastEvent');
@@ -67,6 +68,7 @@ function setAppMenu() {
     mainWindow.setAlwaysOnTop(currentAlwaysOnTop);
   }
   // The menu
+  console.log('Main | start create menu handlers');
   const manuHandlers = createMenuHandlers({
     mainWindow,
     getStatsWindow: () => statsWindow,

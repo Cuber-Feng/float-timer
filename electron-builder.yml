@@ -1,5 +1,5 @@
-appId: com.electron.app
-productName: float-timer
+appId: com.cody-feng.float-timer
+productName: Float Timer
 directories:
   buildResources: build
 files:
