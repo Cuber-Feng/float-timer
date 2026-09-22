@@ -7,7 +7,7 @@ export function createStatsWindow(onClosed) {
     width: 670,
     height: 600,
     show: false,
-    frame: false,
+    frame: true,
     webPreferences: {
       preload: join(__dirname, '../preload/preload.js'),
       sandbox: false

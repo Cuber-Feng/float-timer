@@ -24,8 +24,8 @@ function createWindow() {
     x: 10,
     y: 50,
     show: false,
-    transparent: true,
-    frame: false,
+    transparent: false,
+    frame: true,
     autoHideMenuBar: false,
     ...(process.platform === 'linux' ? { icon } : {}),
     webPreferences: {
