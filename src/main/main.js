@@ -60,9 +60,9 @@ function createWindow() {
 
 function setAppMenu() {
   console.log('Main | start set app menu');
-  const currentOpacity = store.get('opacity');
-  const currentAlwaysOnTop = store.get('alwaysOnTop');
-  const currentEvent = store.get('lastEvent');
+  const currentOpacity = store.get('opacity', 0.8);
+  const currentAlwaysOnTop = store.get('alwaysOnTop', false);
+  const currentEvent = store.get('lastEvent', '3x3');
   if (mainWindow && !mainWindow.isDestroyed()) {
     mainWindow.setOpacity(currentOpacity);
     mainWindow.setAlwaysOnTop(currentAlwaysOnTop);
