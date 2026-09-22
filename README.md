@@ -10,6 +10,30 @@ This is a Rubik's cube timer app that can be displayed over other apps. Techniqu
 
 ## Project Setup
 
+### Pre-requirement
+
+- [Python](https://www.python.org/downloads/)
+- [Node.js](https://nodejs.org/en/download/current)
+- [Git](https://git-scm.com/install/) (unnecessary)
+
+If you are using an Windows 11 or 10, you can use `winget` in cmd:
+
+|Name|Id|
+|---|---|
+|Python 3.14|Python.Python.3.14|
+|Node.js (LTS)|OpenJS.NodeJS.LTS|
+|Git|Git.Git|
+
+```bash
+winget search --id Python.Python
+winget search --id OpenJS.NodeJS.LTS
+winget search --id Git.Git
+
+winget install --id Python.Python.3.14
+winget install --id OpenJS.NodeJS.LTS
+winget install --id Git.Git
+```
+
 ### Install
 
 ```bash
