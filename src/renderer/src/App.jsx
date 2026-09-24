@@ -157,7 +157,6 @@ function App() {
     // eslint-disable-next-line react-hooks/set-state-in-effect
     setScramble(genScramble(curEvent));
     if (scoresList.at(0)) setTime(scoresList.at(0).duration_ms);
-    console.log('App | set scramble');
   }, [curEvent, scoresList]);
 
   // 2.3 处理定时器累加

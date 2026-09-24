@@ -19,8 +19,8 @@ const store = new (ElectronStore.default || ElectronStore)();
 function createWindow() {
   // Create the browser window.
   mainWindow = new BrowserWindow({
-    width: 334,
-    height: 261,
+    width: 353,
+    height: 311,
     x: 10,
     y: 50,
     show: false,
@@ -126,7 +126,6 @@ app.whenReady().then(() => {
 
   ipcMain.handle('add-scores', (event, records) => {
     db.addScores(records);
-    console.log(`Main | ipcMain.handle('add-scores')`);
     if (statsWindow && !statsWindow.isDestroyed()) {
       statsWindow.webContents.send('score-updated', { type: 'add' });
     }
@@ -152,6 +151,11 @@ app.whenReady().then(() => {
     statsWindow = null;
   });
   setAppMenu();
+
+  mainWindow.on('resize', () => {
+    const [width, height] = mainWindow.getSize();
+    console.log(`Size: ${width} x ${height}`);
+  });
 
   app.on('activate', function () {
     // On macOS it's common to re-create a window in the app when the

@@ -10,10 +10,7 @@ let deleteScoreStmt = null;
 let moveScoreIdsStmt = null;
 let normalizeScoreIdsStmt = null;
 
-console.log(
-  'DB | ~/Library/Application Support/Float TimerPath of database file:',
-  path.join(app.getPath('userData'), 'scores.db')
-);
+console.log('DB | file path:', path.join(app.getPath('userData'), 'scores.db'));
 
 // 延迟到 whenReady 后调用此初始化函数
 export function initDB() {
