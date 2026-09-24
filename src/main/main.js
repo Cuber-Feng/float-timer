@@ -157,6 +157,13 @@ app.whenReady().then(() => {
     console.log(`Size: ${width} x ${height}`);
   });
 
+  mainWindow.on('closed', () => {
+    if (statsWindow && !statsWindow.isDestroyed()) {
+      statsWindow.close();
+    }
+    statsWindow = null;
+  });
+
   app.on('activate', function () {
     // On macOS it's common to re-create a window in the app when the
     // dock icon is clicked and there are no other windows open.
@@ -166,5 +173,6 @@ app.whenReady().then(() => {
 
 // Quit when all windows are closed
 app.on('window-all-closed', () => {
+  console.log('quit');
   app.quit();
 });
