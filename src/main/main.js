@@ -18,9 +18,10 @@ const store = new (ElectronStore.default || ElectronStore)();
 
 function createWindow() {
   // Create the browser window.
+  const { w, h } = windowSize['3x3'];
   mainWindow = new BrowserWindow({
-    width: 353,
-    height: 311,
+    width: w, // 353,
+    height: h, // 311,
     x: 10,
     y: 50,
     show: false,
@@ -162,12 +163,6 @@ app.whenReady().then(() => {
       statsWindow.close();
     }
     statsWindow = null;
-  });
-
-  app.on('activate', function () {
-    // On macOS it's common to re-create a window in the app when the
-    // dock icon is clicked and there are no other windows open.
-    if (BrowserWindow.getAllWindows().length === 0) createWindow();
   });
 });
 
