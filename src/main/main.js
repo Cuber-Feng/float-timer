@@ -144,6 +144,9 @@ app.whenReady().then(() => {
   ipcMain.handle('delete-score', (event, id) => {
     db.deleteScore(id);
     mainWindow.webContents.send('score-updated', { type: 'delete' });
+    if (statsWindow && !statsWindow.isDestroyed()) {
+      statsWindow.webContents.send('score-updated', { type: 'delete' });
+    }
     return { success: true };
   });
 

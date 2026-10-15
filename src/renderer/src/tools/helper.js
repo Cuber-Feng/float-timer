@@ -62,6 +62,31 @@ export function genScramble(event = '3x3') {
         result += Math.random() > 0.5 ? '$\n' : 'O\n';
       }
       return result;
+    case '3x3bf':
+      for (let i = 0; i < length; i++) {
+        let curIndex =
+          preLetterIndex === -1
+            ? Math.floor(Math.random() * 6)
+            : (preLetterIndex + Math.floor(Math.random() * 5) + 1) % 6;
+
+        if (
+          preLetterIndex >= 0 &&
+          prePreLetterIndex >= 0 &&
+          ((preLetterIndex / 2) | 0) == ((prePreLetterIndex / 2) | 0)
+        ) {
+          while (((preLetterIndex / 2) | 0) == ((curIndex / 2) | 0)) {
+            curIndex = Math.floor(Math.random() * 6);
+          }
+        }
+        prePreLetterIndex = preLetterIndex;
+        preLetterIndex = curIndex;
+        let curTail = Math.floor(Math.random() * 3);
+        result +=
+          i < length - 2
+            ? moves[curIndex] + tail[curTail] + ' '
+            : moves[curIndex] + 'w' + tail[curTail] + ' ';
+      }
+      return result;
     default:
       return 'Unexpected Error';
   }
@@ -73,5 +98,7 @@ export function formatEventName(event) {
       return 'Megaminx';
     case '3x3':
       return '3x3';
+    case '3x3bf':
+      return '3x3 BF';
   }
 }

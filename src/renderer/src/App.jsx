@@ -79,6 +79,16 @@ function App() {
       console.error('App | Fail to clear the results:', err);
     }
   };
+  // 1.4 delete the last attempt
+  const handleDelete = async (id) => {
+    if (!window.confirm(`Delete score ${id}?`)) return;
+    try {
+      await window.api.deleteScore(id);
+      await fetchScores();
+    } catch (err) {
+      console.error(`Stats | Fail to delete score ${id}:`, err);
+    }
+  };
   // database end
 
   // 2. Timer
@@ -125,6 +135,11 @@ function App() {
         if (e.code === 'KeyR') {
           setTime(0);
         }
+        if (e.code === 'Backspace') {
+          console.log('delete cur');
+          if (scoresList.at(0)) handleDelete(scoresList.at(0).id);
+          // handleDelScore();
+        }
       }
     };
     // 监听空格键抬起
@@ -157,6 +172,7 @@ function App() {
     // eslint-disable-next-line react-hooks/set-state-in-effect
     setScramble(genScramble(curEvent));
     if (scoresList.at(0)) setTime(scoresList.at(0).duration_ms);
+    else setTime(0);
   }, [curEvent, scoresList]);
 
   // 2.3 处理定时器累加

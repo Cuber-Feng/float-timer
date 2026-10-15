@@ -8,6 +8,20 @@ function Stats() {
   const [scoreUpdated, setscoreUpdated] = useState(new Date());
   const [curEvent, setcurEvent] = useState(null);
 
+  const fetchScores = async () => {
+    if (!curEvent) return;
+    console.log('Stats | fetchScores');
+    try {
+      setLoading(true);
+      const data = await window.api.getHighScores(0, curEvent);
+      setScoresList(data);
+    } catch (err) {
+      console.error('Stats | Fail to get the results:', err);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   useEffect(() => {
     // put this in a useEffect is to prevent creating listener every time.
     window.api.onScoreUpdated((data) => {
@@ -23,19 +37,7 @@ function Stats() {
     });
   }, []);
 
-  const fetchScores = async () => {
-    if (!curEvent) return;
-    console.log('Stats | fetchScores');
-    try {
-      setLoading(true);
-      const data = await window.api.getHighScores(0, curEvent);
-      setScoresList(data);
-    } catch (err) {
-      console.error('Stats | Fail to get the results:', err);
-    } finally {
-      setLoading(false);
-    }
-  };
+
   useEffect(() => {
     // eslint-disable-next-line react-hooks/set-state-in-effect
     fetchScores();

@@ -51,6 +51,12 @@ export function createAppMenu({
           type: 'radio',
           checked: currentEvent == 'mega',
           click: () => handleSwitchEvent('mega')
+        },
+        {
+          label: '3x3 BF',
+          type: 'radio',
+          checked: currentEvent == '3x3bf',
+          click: () => handleSwitchEvent('3x3bf')
         }
       ]
     },
