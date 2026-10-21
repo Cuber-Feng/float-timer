@@ -9,12 +9,9 @@ body,
     width: 100% !important;
     height: 100% !important;
     background-color: transparent !important;
-    /* 彻底清除白底 */
     overflow: hidden;
-    /* 防止无边框时出现多余滚动条 */
     -webkit-user-select: none;
     user-select: none;
-    /* 禁用文本选中（使界面更像原生应用） */
 }
 
 * {
@@ -38,25 +35,23 @@ body,
 
 button {
     -webkit-app-region: no-drag;
-    /* 按钮不允许拖拽，否则无法点击 */
 }
 
 .no-drag {
     -webkit-app-region: no-drag;
-    /* 任何带有这个类的元素都不允许拖拽 */
 }
 
 .timer-display {
     color: var(--timer-color);
     font-size: var(--timer-size);
-    font-family: monospace;
+    font-family: "Courier New", Consolas, monospace;
     margin: 0;
 }
 
 .scramble-container {
     margin-bottom: 20px;
     font-size: 1rem;
-    font-family: monospace;
+    font-family:  "Courier New", Consolas, monospace;
     text-align: center;
 }
 
