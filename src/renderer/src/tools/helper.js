@@ -22,6 +22,34 @@ export function calculateAo5(scores) {
   return Math.round(sum / 3);
 }
 
+export function calculateBo24(scores) {
+  if (!Array.isArray(scores) || scores.length == 0) return null;
+  const last24 = scores.slice(0, Math.min(24, scores.length)).map((item) => item.duration_ms);
+  const best = Math.min(...last24);
+  return Math.round(best);
+}
+
+export function getAvg(scores) {
+  if (!Array.isArray(scores) || scores.length < 5) return null;
+  const s_list = scores.map((item) => item.duration_ms);
+  s_list.sort((a, b) => a - b);
+  const low_index = Math.round(scores.length / 5);
+  const up_index = Math.round((scores.length / 5) * 4);
+  const middle60 = s_list.slice(low_index, up_index);
+  const sum = middle60.reduce((acc, cur) => acc + cur, 0);
+  return Math.round(sum / (up_index - low_index));
+}
+
+export function getSD(scores, useSample = false) {
+  const arr = scores.map((item) => item.duration_ms);
+  if (arr.length === 0) return 0;
+  const n = arr.length;
+  const mean = arr.reduce((sum, val) => sum + val, 0) / n;
+  const squaredDiffsSum = arr.reduce((sum, val) => sum + Math.pow(val - mean, 2), 0);
+  const divisor = useSample && n > 1 ? n - 1 : n;
+  return Math.sqrt(squaredDiffsSum / divisor);
+}
+
 export function genScramble(event = '3x3') {
   console.log('helper:', event);
   const moves = ['R', 'L', 'U', 'D', 'F', 'B'];
@@ -32,6 +60,7 @@ export function genScramble(event = '3x3') {
   let prePreLetterIndex = -2;
   switch (event) {
     case '3x3':
+    case '3x3oh':
       for (let i = 0; i < length; i++) {
         let curIndex =
           preLetterIndex === -1
@@ -100,5 +129,7 @@ export function formatEventName(event) {
       return '3x3';
     case '3x3bf':
       return '3x3 BF';
+    case '3x3oh':
+      return '3x3 OH';
   }
 }

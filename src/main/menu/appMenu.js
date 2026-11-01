@@ -47,16 +47,22 @@ export function createAppMenu({
           click: () => handleSwitchEvent('3x3')
         },
         {
-          label: 'Megaminx',
-          type: 'radio',
-          checked: currentEvent == 'mega',
-          click: () => handleSwitchEvent('mega')
-        },
-        {
           label: '3x3 BF',
           type: 'radio',
           checked: currentEvent == '3x3bf',
           click: () => handleSwitchEvent('3x3bf')
+        },
+        {
+          label: '3x3 OH',
+          type: 'radio',
+          checked: currentEvent == '3x3oh',
+          click: () => handleSwitchEvent('3x3oh')
+        },
+        {
+          label: 'Megaminx',
+          type: 'radio',
+          checked: currentEvent == 'mega',
+          click: () => handleSwitchEvent('mega')
         }
       ]
     },

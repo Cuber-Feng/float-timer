@@ -51,15 +51,19 @@ button {
 .scramble-container {
     margin-bottom: 20px;
     font-size: 1rem;
-    font-family:  "Courier New", Consolas, monospace;
+    font-family: monospace, "Courier New", Consolas;
     text-align: center;
 }
 
-.ao5-display {
+.aggregate-display {
     margin-top: 1rem;
     font-family: Georgia, 'Times New Roman', Times, serif;
     color: var(--timer-color);
     font-weight: 600;
+    border-top: 2px dashed black;
+    min-width: 100%;
+    text-align: center;
+    padding-top: 3px;
 }
 
 .scramble-container p {

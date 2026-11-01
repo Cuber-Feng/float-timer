@@ -1,6 +1,6 @@
 import '../style/stats.css';
 import React, { useState, useEffect, useRef } from 'react';
-import { formatTime, calculateAo5, genScramble, formatEventName } from '../tools/helper';
+import { formatTime, formatEventName, getAvg, getSD } from '../tools/helper';
 
 function Stats() {
   const [scoresList, setScoresList] = useState([]);
@@ -37,7 +37,6 @@ function Stats() {
     });
   }, []);
 
-
   useEffect(() => {
     // eslint-disable-next-line react-hooks/set-state-in-effect
     fetchScores();
@@ -55,9 +54,14 @@ function Stats() {
     }
   };
 
+  const avg = getAvg(scoresList);
+  const sd = getSD(scoresList, false);
   return (
     <div className="stats-container">
       <h1 className="title">Statistics - {curEvent ? formatEventName(curEvent) : 'Loading...'}</h1>
+      <div className="aggregate-stats">
+        Average: {formatTime(avg)}, Standard Deviation: {formatTime(sd)}
+      </div>
       <div className="result-table">
         <table>
           <thead>
@@ -82,9 +86,7 @@ function Stats() {
             ) : (
               scoresList.map((item, index) => (
                 <tr key={item.id}>
-                  <td style={{ textAlign: 'right' }}>
-                    {String(scoresList.length - index).padStart(3, '0')}
-                  </td>
+                  <td style={{ textAlign: 'right' }}>{String(scoresList.length - index)}</td>
                   <td style={{ textAlign: 'right', fontFamily: 'monospace' }}>
                     {formatTime(item.duration_ms)}
                   </td>

@@ -1,6 +1,6 @@
 import './style/app.css';
 import React, { useState, useEffect, useRef, isValidElement } from 'react';
-import { formatTime, calculateAo5, genScramble, formatEventName } from './tools/helper';
+import { formatTime, calculateAo5, calculateBo24, genScramble, formatEventName } from './tools/helper';
 
 function App() {
   const [time, setTime] = useState(0); // ms
@@ -80,8 +80,8 @@ function App() {
     }
   };
   // 1.4 delete the last attempt
-  const handleDelete = async (id) => {
-    if (!window.confirm(`Delete score ${id}?`)) return;
+  const handleDelete = async (id, dur) => {
+    if (!window.confirm(`Delete result ${id}: ${formatTime(dur)}?`)) return;
     try {
       await window.api.deleteScore(id);
       await fetchScores();
@@ -137,8 +137,7 @@ function App() {
         }
         if (e.code === 'Backspace') {
           console.log('delete cur');
-          if (scoresList.at(0)) handleDelete(scoresList.at(0).id);
-          // handleDelScore();
+          if (scoresList.at(0)) handleDelete(scoresList.at(0).id, scoresList.at(0).duration_ms);
         }
       }
     };
@@ -187,7 +186,7 @@ function App() {
   }, [isRunning]);
 
   const currentAo5 = calculateAo5(scoresList);
-
+  const currentBo24 = calculateBo24(scoresList);
   return (
     <div className="app-container">
       {!isRunning && !isReady && (
@@ -209,7 +208,9 @@ function App() {
       </h1>
 
       {currentAo5 && !isRunning && !isReady && (
-        <div className="ao5-display">
+        <div className="aggregate-display">
+          <span>BO24: {formatTime(currentBo24)}</span>
+          <span> | </span>
           <span>AO5: {formatTime(currentAo5)}</span>
         </div>
       )}

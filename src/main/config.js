@@ -1,6 +1,7 @@
 export const windowSize = {
   '3x3': { w: 353, h: 311 },
   '3x3bf': { w: 353, h: 311 },
+  '3x3oh': { w: 353, h: 311 },
   mega: { w: 320, h: 397 }
 };
 
