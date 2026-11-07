@@ -1,6 +1,17 @@
 import './style/app.css';
 import React, { useState, useEffect, useRef, isValidElement } from 'react';
-import { formatTime, calculateAo5, calculateBo24, genScramble, formatEventName } from './tools/helper';
+import {
+  formatTime,
+  calculateAo5,
+  calculateBo24,
+  genScramble,
+  formatEventName
+} from './tools/helper';
+import { CubingIcons } from '@cubing/icons/js';
+
+// Work with a list of available icons
+console.log('Available Cubing Icons:');
+console.log(CubingIcons);
 
 function App() {
   const [time, setTime] = useState(0); // ms
@@ -187,12 +198,19 @@ function App() {
 
   const currentAo5 = calculateAo5(scoresList);
   const currentBo24 = calculateBo24(scoresList);
+  const IconName = {
+    '3x3': 'event-333',
+    '3x3oh': 'event-333oh',
+    '3x3bf': 'event-333bf',
+    mega: 'event-minx'
+  };
   return (
     <div className="app-container">
       {!isRunning && !isReady && (
         <div className="scramble-container">
-          <div style={{ fontWeight: 800, fontSize: '1.2rem' }}>
-            {curEvent ? formatEventName(curEvent) : 'Loading...'}
+          <div className="event-info" style={{ fontWeight: 800, fontSize: '1.2rem' }}>
+            <span className={`cubing-icon ${IconName[curEvent]}`}></span>
+            <span>{curEvent ? formatEventName(curEvent) : 'Loading...'}</span>
           </div>
           <p>{scramble}</p>
         </div>
@@ -210,7 +228,6 @@ function App() {
       {currentAo5 && !isRunning && !isReady && (
         <div className="aggregate-display">
           <span>BO24: {formatTime(currentBo24)}</span>
-          <span> | </span>
           <span>AO5: {formatTime(currentAo5)}</span>
         </div>
       )}

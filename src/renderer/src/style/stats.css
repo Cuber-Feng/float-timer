@@ -1,5 +1,5 @@
 * {
-    background-color: antiquewhite;
+    background-color: #F5F5F5;
     font-family: 'Courier New', Courier, monospace;
 }
 
@@ -51,7 +51,7 @@ table td {
 
 button {
     border-radius: 4px;
-    background-color: brown;
+    background-color: #2b2b2b;
     color: white;
     font-weight: 600;
     border: 0;
@@ -59,4 +59,8 @@ button {
 }
 button:hover {
     cursor: pointer;
+}
+
+.aggregate-stats {
+    text-align: center;
 }

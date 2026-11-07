@@ -1,5 +1,5 @@
 /* renderer/src/index.css - 强制覆盖所有背景为透明，防止 React 框架自带样式干扰 */
-
+@import "@cubing/icons/css";
 /* 1. 根节点和宿主 DOM 必须强制透明 */
 html,
 body,
@@ -55,15 +55,25 @@ button {
     text-align: center;
 }
 
+.event-info{
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+}
+
 .aggregate-display {
     margin-top: 1rem;
     font-family: Georgia, 'Times New Roman', Times, serif;
     color: var(--timer-color);
     font-weight: 600;
-    border-top: 2px dashed black;
+    border-top: 1px solid black;
     min-width: 100%;
     text-align: center;
     padding-top: 3px;
+    display: flex;
+    justify-content: space-between;
 }
 
 .scramble-container p {

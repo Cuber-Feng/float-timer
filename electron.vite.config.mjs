@@ -3,6 +3,18 @@ import { resolve } from 'path';
 import react from '@vitejs/plugin-react';
 import { defineConfig, externalizeDepsPlugin } from 'electron-vite';
 
+if (process.platform === 'linux') {
+  const electronArgs = process.env.ELECTRON_CLI_ARGS
+    ? JSON.parse(process.env.ELECTRON_CLI_ARGS)
+    : [];
+  for (const arg of ['--ozone-platform=x11', '--disable-gpu']) {
+    if (!electronArgs.includes(arg)) {
+      electronArgs.push(arg);
+    }
+  }
+  process.env.ELECTRON_CLI_ARGS = JSON.stringify(electronArgs);
+}
+
 export default defineConfig({
   main: {
     plugins: [
