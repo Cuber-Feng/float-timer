@@ -208,7 +208,7 @@ function App() {
     <div className="app-container">
       {!isRunning && !isReady && (
         <div className="scramble-container">
-          <div className="event-info" style={{ fontWeight: 800, fontSize: '1.2rem' }}>
+          <div className="event-info">
             <span className={`cubing-icon ${IconName[curEvent]}`}></span>
             <span>{curEvent ? formatEventName(curEvent) : 'Loading...'}</span>
           </div>

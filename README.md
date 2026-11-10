@@ -2,13 +2,13 @@
 
 This is a Rubik's cube timer app that can be displayed over other apps. Technique: An Electron application with React.
 
-## Recommended IDE Setup
+## 1. Recommended IDE Setup
 
 - [VSCode](https://code.visualstudio.com/)
 - [ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)
 - [Prettier](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)
 
-## Project Setup
+## 2. Project Setup
 
 ### Pre-requirement
 
@@ -61,7 +61,7 @@ $ npm run build:mac
 $ npm run build:linux
 ```
 
-## Debugs
+## 3. Debugs
 
 ### Problem with Linux
 
@@ -73,6 +73,15 @@ I changed the Linux launch configuration to pass `--ozone-platform=x11 --disable
 
 Verified: `npm run dev` opened the window, and `npm run build:linux` succeeded. Rebuild and use a newly generated Linux package for the packaged-app fix. Lint reports no errors; it still has one unrelated formatting warning in `App.jsx`.
 
-## Reference & Credit
+## 4. Reference & Credit
 
 - [Cubing icons](https://icons.cubing.net/) provides the icons of each cubing event.
+- [StyleSheet Sort](https://marketplace.visualstudio.com/items?itemName=z0gSh1u.vscode-stylesheet-sort) make the CSS order consistent.
+  - Scalable and Modular Architecture for CSS (SMACSS Order)
+    > From outer to inner.
+    1. Layout/Positioning: display, position, z-index, float
+    2. Box Model/Dimensions: width, height, margin, padding, border
+    3. Visual: background, border-radius, box-shadow
+    4. Typography: font, color, text-align
+- [ESLint](https://eslint.org/) for JavaScript formatting.
+- [Code Spell Checker](https://marketplace.visualstudio.com/items?itemName=streetsidesoftware.code-spell-checker) checks typo.
