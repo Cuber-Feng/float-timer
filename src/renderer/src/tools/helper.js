@@ -22,10 +22,10 @@ export function calculateAo5(scores) {
   return Math.round(sum / 3);
 }
 
-export function calculateBo24(scores) {
+export function calculateBoN(scores, n = 5) {
   if (!Array.isArray(scores) || scores.length == 0) return null;
-  const last24 = scores.slice(0, Math.min(24, scores.length)).map((item) => item.duration_ms);
-  const best = Math.min(...last24);
+  const lastN = scores.slice(0, Math.min(n, scores.length)).map((item) => item.duration_ms);
+  const best = Math.min(...lastN);
   return Math.round(best);
 }
 

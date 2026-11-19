@@ -3,7 +3,7 @@ import React, { useState, useEffect, useRef, isValidElement } from 'react';
 import {
   formatTime,
   calculateAo5,
-  calculateBo24,
+  calculateBoN,
   genScramble,
   formatEventName
 } from './tools/helper';
@@ -92,7 +92,8 @@ function App() {
   };
   // 1.4 delete the last attempt
   const handleDelete = async (id, dur) => {
-    if (!window.confirm(`Delete result ${id}: ${formatTime(dur)}?`)) return;
+    if (!window.confirm(`Delete this record? \n ${formatEventName(curEvent)}: ${formatTime(dur)}`))
+      return;
     try {
       await window.api.deleteScore(id);
       await fetchScores();
@@ -197,7 +198,7 @@ function App() {
   }, [isRunning]);
 
   const currentAo5 = calculateAo5(scoresList);
-  const currentBo24 = calculateBo24(scoresList);
+  const currentBo5 = calculateBoN(scoresList, 5);
   const IconName = {
     '3x3': 'event-333',
     '3x3oh': 'event-333oh',
@@ -225,10 +226,11 @@ function App() {
         {formatTime(time, !isRunning)}
       </h1>
 
-      {currentAo5 && !isRunning && !isReady && (
+      {!isRunning && !isReady && (
         <div className="aggregate-display">
-          <span>BO24: {formatTime(currentBo24)}</span>
-          <span>AO5: {formatTime(currentAo5)}</span>
+          <span>{currentBo5 ? formatTime(currentBo5) : 'N/A'}</span>
+          <span>{scoresList.length}</span>
+          <span>{currentAo5 ? formatTime(currentAo5) : 'N/A'}</span>
         </div>
       )}
     </div>
